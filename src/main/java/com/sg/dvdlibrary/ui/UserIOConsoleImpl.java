@@ -8,12 +8,21 @@ import java.util.Scanner;
 public class UserIOConsoleImpl implements UserIO{
     final private Scanner console = new Scanner(System.in);
 
+    /**
+     * Prints a simple give message
+     * @param msg 
+     */
     @Override
     public void print(String msg) {
         System.out.println(msg);
 
     }
 
+    /**
+     * Takes in user input message to display it.
+     * @param prompt
+     * @return 
+     */
     @Override
     public double readDouble(String prompt) {
         while (true) {
@@ -25,6 +34,13 @@ public class UserIOConsoleImpl implements UserIO{
         }
     }
 
+    /**
+     * A more complex version of the same method, takes in user input to display.
+     * @param prompt
+     * @param min
+     * @param max
+     * @return 
+     */
     @Override
     public double readDouble(String prompt, double min, double max) {
         double result;
@@ -34,6 +50,12 @@ public class UserIOConsoleImpl implements UserIO{
         return result;
     }
 
+    
+    /**
+     * Reads a prompt from the user to display.
+     * @param prompt
+     * @return 
+     */
     @Override
     public float readFloat(String prompt) {
         while (true) {
@@ -45,6 +67,13 @@ public class UserIOConsoleImpl implements UserIO{
         }
     }
 
+    /**
+     * A more complex version of the same method, takes in user input to display.
+     * @param prompt
+     * @param min
+     * @param max
+     * @return 
+     */
     @Override
     public float readFloat(String prompt, float min, float max) {
         float result;
@@ -54,7 +83,12 @@ public class UserIOConsoleImpl implements UserIO{
 
         return result;
     }
-
+    
+    /**
+     * Takes in a message from the user to display.
+     * @param prompt
+     * @return 
+     */
     @Override
     public int readInt(String prompt) {
         boolean invalidInput = true;
@@ -71,6 +105,13 @@ public class UserIOConsoleImpl implements UserIO{
         return num;
     }
 
+    /**
+     * More complex version - takes in user prompt to display
+     * @param prompt
+     * @param min
+     * @param max
+     * @return 
+     */
     @Override
     public int readInt(String prompt, int min, int max) {
         int result;
@@ -80,7 +121,12 @@ public class UserIOConsoleImpl implements UserIO{
 
         return result;
     }
-
+    
+    /**
+     * Takes in a user input to display.
+     * @param prompt
+     * @return 
+     */
     @Override
     public long readLong(String prompt) {
         while (true) {
@@ -91,7 +137,14 @@ public class UserIOConsoleImpl implements UserIO{
             }
         }
     }
-
+    
+    /**
+     * More complex version - takes in user prompt to display
+     * @param prompt
+     * @param min
+     * @param max
+     * @return 
+     */
     @Override
     public long readLong(String prompt, long min, long max) {
         long result;
@@ -102,6 +155,11 @@ public class UserIOConsoleImpl implements UserIO{
         return result;
     }
 
+    /**
+     * Reads in a prompt to display.
+     * @param prompt
+     * @return 
+     */
     @Override
     public String readString(String prompt) {
         System.out.println(prompt);

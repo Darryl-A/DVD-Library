@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.*;
+import java.util.Collection;
 /**
  * 
  * @author darrylanthony
@@ -25,10 +26,11 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
 
     private Map<String, DVD> DVDLibrary = new HashMap<>();
 
+
     @Override
     public DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException{
         loadLibrary();
-        DVD newDVD = DVDLibrary.put(title, dvd);
+        DVD newDVD = DVDLibrary.put(title, dvd); 
         writeLibrary();
         return newDVD;
     }
@@ -68,6 +70,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     }
     
     private DVD unmarshallDVD(String dvdAsText){
+    // Stores in the following format    
     // title::release date::mpaa rating::directorName::studio::userNote
     //  [0]     [1]            [2]     [3]     [4]     [5]
         String[] dvdTokens = dvdAsText.split(DELIMITER);
@@ -76,15 +79,19 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
 
         DVD dvdFromFile = new DVD(dvdTitle);
 
-
+        //Index 1 --> Release Date
         dvdFromFile.setReleaseDate(dvdTokens[1]);
-
+        
+        //Index 2 --> Ratingg
         dvdFromFile.setRating(dvdTokens[2]);
 
+        //Index 3 --> Director's name
         dvdFromFile.setDirectorName(dvdTokens[3]);
         
+        //Index 4 --> Studio name
         dvdFromFile.setStudio(dvdTokens[4]);
-
+        
+        //Index 5 --> User Note
         dvdFromFile.setUserNote(dvdTokens[5]);
         
         return dvdFromFile;
@@ -100,8 +107,11 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
             //catches the FileNotFoundException and translates it to the DVDLibraryDaoException created
             throw new DVDLibraryDaoException("Error DVD library data could not be loaded into memory.", e);
         }
+        //Holds the most current line
         String currentLine;
         DVD currentDVD;
+        
+        //Decodes each line into a DVD object
         while (scanner.hasNextLine()) {
             
             // get next line in the file
